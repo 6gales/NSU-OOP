@@ -87,12 +87,10 @@ public class View implements Observer
 	{
 		String name = o.getName();
 
-		List<JComponent> row = getRow(name,
-				() -> {
-					Object jc = JProgressBar.class.getConstructors()[2].newInstance(0, 100);
-					((JProgressBar)jc).setStringPainted(true);
-					return (JComponent) jc;
-				});
+		List<JComponent> row = getRow(name, () -> {
+					JProgressBar pb = new JProgressBar(0, 100);
+					pb.setStringPainted(true);
+					return pb; });
 
 		int size = o.size(),
 			capacity = o.capacity();
@@ -103,7 +101,7 @@ public class View implements Observer
 
 	private void updateStatusInfo(String name, String arg)
 	{
-		List<JComponent> row = getRow(name, () -> JLabel.class.getDeclaredConstructor().newInstance());
+		List<JComponent> row = getRow(name, JLabel::new);
 
 		((JLabel)row.get(infoLabel)).setText(arg);
 	}
