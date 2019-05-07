@@ -1,0 +1,8 @@
+image: openjdk:11-stretch
+
+test:
+  stage: test
+  before_script:
+    - apt update && apt install -y ant ant-optional
+  script:
+    - ant test

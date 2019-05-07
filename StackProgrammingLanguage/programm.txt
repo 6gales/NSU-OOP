@@ -1,0 +1,3 @@
+define factorial 1 swap dup [ dup rot * swap 1 - dup ] drop ;
+5 factorial print
+# Вывод: 120
